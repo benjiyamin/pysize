@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <title>PySize</title>
+  
+
+  <link rel="shortcut icon" href="./img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="./css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "None";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = "/";
+  </script>
+  
+  <script src="./js/jquery-2.1.1.min.js"></script>
+  <script src="./js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.pack.js"></script>
+  <script src="./js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> PySize</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href=".">Home</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#project-overview">Project Overview</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#installation">Installation</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#basic-usage">Basic Usage</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#contributing">Contributing</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#testing">Testing</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#license">License</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="authors/">Authors</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="license/">License</a>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">PySize</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/benjiyamin/pysize/" class="icon icon-github"> Edit on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="project-overview">Project Overview</h1>
+<p>PySize is a simple lightweight tool for converting quantities between defined units.</p>
+<h1 id="installation">Installation</h1>
+<p>Installing the easy way, using pip:</p>
+<pre><code>$ pip install pysize
+</code></pre>
+<h1 id="basic-usage">Basic Usage</h1>
+<p>With PySize it's easy to calculate a conversion from one unit to another.</p>
+<pre><code>&gt;&gt;&gt; from pysize import convert
+
+&gt;&gt;&gt; a = convert(1.0).frm('m').to('mm')
+&gt;&gt;&gt; print(a)
+1000.0
+</code></pre>
+<p>The conversion functionality even works with NumPy arrays.</p>
+<pre><code>&gt;&gt;&gt; a = numpy.array([[1.0, 2.0], [3.0, 4.0]])
+&gt;&gt;&gt; print(a)
+[[ 1.  2.]
+ [ 3.  4.]]
+&gt;&gt;&gt; b = convert(a).frm('m').to('mm')
+&gt;&gt;&gt; print(b)
+[[ 1000.  2000.]
+ [ 3000.  4000.]]
+</code></pre>
+<p>One can also convert units combined with multiplication and/or division.</p>
+<pre><code>&gt;&gt;&gt; a = 60.0  # In miles per hour
+&gt;&gt;&gt; b = convert(a).frm('mi/h').to('ft/s')  # Coverts to feet per second
+&gt;&gt;&gt; print(b)
+88.0
+</code></pre>
+<p>Exponents are parsed and applied correctly.</p>
+<pre><code>&gt;&gt;&gt; a = 10.0  # cubic yards
+&gt;&gt;&gt; b = convert(a).frm('yd^3').to('ft^3')  # Coverts to cubic feet
+&gt;&gt;&gt; print(b)
+270.0
+</code></pre>
+<p>To view a list valid conversions from a unit, use the <code>options</code> function.</p>
+<pre><code>&gt;&gt;&gt; opts = options('mm')
+&gt;&gt;&gt; print(opts)
+['km', 'm', 'dm', 'cm', 'mm']
+</code></pre>
+<p>Options can also be shown after defining the 'from' unit.</p>
+<pre><code>&gt;&gt;&gt; opts = convert(1.0).frm('mm').options()
+&gt;&gt;&gt; print(opts)
+['km', 'm', 'dm', 'cm', 'mm']
+</code></pre>
+<h1 id="contributing">Contributing</h1>
+<p>For developers, it's important to use common best practices when contributing to the project.
+<a href="https://www.python.org/dev/peps/pep-0008/">PEP 8</a> should always be adhered. Code should be
+documented with <a href="http://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html">Google style docstrings</a>.
+Pull requests and filing issues are encouraged.</p>
+<p>To start contributing with the PySize repository:</p>
+<ol>
+<li>
+<p>Fork it!</p>
+</li>
+<li>
+<p>Create a local clone of your fork.</p>
+<pre><code>$ git clone https://github.com/YOUR-USERNAME/pysize
+Cloning into `pysize`...
+remote: Counting objects: 10, done.
+remote: Compressing objects: 100% (8/8), done.
+remove: Total 10 (delta 1), reused 10 (delta 1)
+Unpacking objects: 100% (10/10), done.
+</code></pre>
+</li>
+<li>
+<p>Set up a clean working environment, using virtualenv.</p>
+<pre><code>$ virtualenv -p python3 venv
+$ source venv/bin/activate
+$ pip install -r requirements.txt
+</code></pre>
+</li>
+<li>
+<p>Add the original as a remote repository named <code>upstream</code>.</p>
+<pre><code>$ git remote add upstream https://github.com/benjiyamin/pysize.git
+$ git remote -v
+origin    https://github.com/YOUR-USERNAME/pysize.git (fetch)
+origin    https://github.com/YOUR-USERNAME/pysize.git (push)
+upstream  https://github.com/benjiyamin/pysize.git (fetch)
+upstream  https://github.com/benjiyamin/pysize.git (push)
+</code></pre>
+</li>
+<li>
+<p>Fetch the current upstream repository branches and commits.</p>
+<pre><code>$ git fetch upstream
+remote: Counting objects: 75, done.
+remote: Compressing objects: 100% (53/53), done.
+remote: Total 62 (delta 27), reused 44 (delta 9)
+Unpacking objects: 100% (62/62), done.
+From https://github.com/benjiyamin/pysize
+ * [new branch]      master     -&gt; upstream/master
+</code></pre>
+</li>
+<li>
+<p>Checkout your local <code>master</code> branch and sync <code>upstream/master</code> to it, without losing local changes.</p>
+<pre><code>$ git checkout master
+Switched to branch 'master'
+
+$ git merge upstream/master
+</code></pre>
+</li>
+<li>
+<p>Commit your local changes and push to <code>upstream/master</code>.</p>
+<pre><code>$ git commit -m 'Add some feature'
+$ git push upstream master
+</code></pre>
+</li>
+<li>
+<p>Submit a pull request. =)</p>
+</li>
+</ol>
+<p>For a list of contributors who have participated in this project, check out <a href="authors/">AUTHORS</a>.</p>
+<h1 id="testing">Testing</h1>
+<p>Unit Testing is currently done using the built-in unittest module:</p>
+<pre><code>$ python tests.py
+</code></pre>
+<h1 id="license">License</h1>
+<p>This project is licensed under GPL 3.0 - see <a href="license/">LICENSE</a> for details.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="authors/" class="btn btn-neutral float-right" title="Authors">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/benjiyamin/pysize/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+        <span style="margin-left: 15px"><a href="authors/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 0.15.3
+Build Date UTC : 2016-10-23 14:15:16.332341
+-->
