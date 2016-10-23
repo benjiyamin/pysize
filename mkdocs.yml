@@ -1,0 +1,7 @@
+site_name: PySize
+repo_url: https://github.com/benjiyamin/pysize/
+pages:
+- Home: index.md
+- Authors: authors.md
+- License: license.md
+theme: readthedocs

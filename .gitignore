@@ -1,0 +1,15 @@
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+MANIFEST.in
+dist/
+
+venv/
+.idea
+scripts/
+archive/
+site/
+
+*.egg-info/
