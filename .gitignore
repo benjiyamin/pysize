@@ -5,6 +5,7 @@ __pycache__/
 
 MANIFEST.in
 dist/
+build/
 
 venv/
 .idea
